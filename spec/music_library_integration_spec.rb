@@ -7,7 +7,20 @@ RSpec.describe "MusicLibrary Integration" do
       track_1 = Track.new("Burna Boy", "Anybody")
       library = MusicLibrary.new
       library.add(track_1)
-      expect(library.all).to eq track_1
+      expect(library.all).to eq [track_1]
+    end
+  end
+
+  context "searches for tracks with matching keyword" do
+    it "correctly returns tracks that contain keyword" do
+      track_1 = Track.new("Nafe Smallz", "Good Love")
+      track_2 = Track.new("Mad Love", "Mabel")
+      track_3 = Track.new("Britney Spears", "Toxic")
+      library = MusicLibrary.new
+      library.add(track_1)
+      library.add(track_2)
+      library.add(track_3)
+      expect(library.search("Love")).to eq [track_1, track_2]
     end
   end
 end
