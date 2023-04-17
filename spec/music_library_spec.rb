@@ -12,9 +12,12 @@ RSpec.describe MusicLibrary do
 
   context "searches for tracks with matching keyword" do
     it "correctly returns tracks that contain keyword" do
-      track_1 = double(:track, matches?: true)
-      track_2 = double(:track, matches?: false)
-      track_3 = double(:track, matches?: true)
+      track_1 = double(:track)
+      expect(track_1).to receive(:matches?).with("Love").and_return(true)
+      track_2 = double(:track)
+      expect(track_2).to receive(:matches?).with("Love").and_return(false)
+      track_3 = double(:track)
+      expect(track_3).to receive(:matches?).with("Love").and_return(true)
       library = MusicLibrary.new
       library.add(track_1)
       library.add(track_2)
