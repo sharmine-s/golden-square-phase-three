@@ -1,6 +1,5 @@
 class SecretDiary
   def initialize(diary) # diary is an instance of Diary
-    fail "Argument should be an instance of Diary" unless diary.is_a? Diary
     @diary = diary
     @is_locked = true
   end
@@ -9,7 +8,8 @@ class SecretDiary
     # Raises the error "Go away!" if the diary is locked
     # Returns the diary's contents if the diary is unlocked
     # The diary starts off locked
-    @is_locked == true ? "Go away!" : @diary.read
+    fail "Go away!" unless @is_locked == false
+    @diary.read
   end
 
   def lock
